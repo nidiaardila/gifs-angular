@@ -3,6 +3,13 @@
     <hr class="text-white" />
 
     <div class="list-group list-reset">
-      <a href="#" class="list-group-item">Dashboard</a>
+      <a *ngFor="let item of historial"
+        (click)="buscar(item)"
+        href="#" 
+        class="list-group-item list-group-item-action">
+        {{item | titlecase}}
+        <!-- titlecase pipe para capitalizar las palabras  -->
+      </a>
     </div>
+
   </div>
