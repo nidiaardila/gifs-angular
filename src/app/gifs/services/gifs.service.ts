@@ -9,6 +9,7 @@ import { Gif, SearchGifsResponse } from '../interfaces/gifs.interface'
 export class GifsService {
 
   private apiKey    : string = 'hNPAPQsO6hBkzdp66BOZNBubZIZcoKOC';
+  private url       : string = 'https://api.giphy.com/v1/gifs/';
   private _historial: string[] =[];
   public resultados : Gif[] = [];
 
@@ -49,12 +50,12 @@ export class GifsService {
 
     console.log(this._historial);
 
-    const params = new HttpParams()
-        .set('api_key', this.apiKey)
-        .set('limit', '10')
-        .set('q',query)
+    // const params = new HttpParams()
+    //     .set('api_key', this.apiKey)
+    //     .set('limit', '10')
+    //     .set('q',query)
 
-    this.http.get<SearchGifsResponse>(`https://api.giphy.com/v1/gifs/search?api_key=hNPAPQsO6hBkzdp66BOZNBubZIZcoKOC&q=${ query }&limit=10`)
+    this.http.get<SearchGifsResponse>(`${this.url}search?api_key=${this.apiKey}&q=${ query }&limit=10`)
       .subscribe((resp) =>{
         console.log(resp.data);
         this.resultados = resp.data;
